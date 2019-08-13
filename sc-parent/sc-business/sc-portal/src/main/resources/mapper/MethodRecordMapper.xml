@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.sc.portal.web.mapper.MethodRecordMapper">
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true"/>
+
+    <!-- 返回结果的objValue字段内容过多，易导致异常，则不进行返回显示 -->
+    <resultMap id="collectionResultMap" type="MethodRecordBo">
+        <id column="t_method_id" property="methodId" />
+        <result column="t_thread_name" property="threadName" />
+        <result column="t_start_time" property="startTime" />
+        <result column="t_end_time" property="endTime" />
+        <result column="t_class_name" property="className" />
+        <result column="t_modifier" property="modifier" />
+        <result column="t_method_name" property="methodName" />
+        <result column="t_track_id" property="trackId" />
+        <result column="t_user_agent" property="userAgent" />
+        <result column="t_server_host" property="serverHost" />
+        <result column="t_url" property="url" />
+        <result column="t_method_type" property="methodType" />
+        <result column="t_client_host" property="clientHost" />
+        <collection property="args" ofType="Paramter"  javaType="list">
+            <id column="arg_id" property="id" />
+            <result column="arg_obj_id" property="objId" />
+            <result column="arg_obj_val" property="objValue" />
+            <result column="arg_obj_type" property="objType" />
+            <result column="arg_obj_idx" property="objIdx"/>
+        </collection>
+        <collection property="result" ofType="Paramter"  javaType="list">
+            <!-- 如果集合中的所有属性一致，则会合并-->
+            <id column="rst_id" property="id" />
+            <result column="rst_obj_id" property="objId" />
+           <!-- <result column="rst_obj_val" property="objValue" />-->
+            <result column="rst_obj_type" property="objType" />
+            <result column="rst_obj_idx" property="objIdx"/>
+        </collection>
+    </resultMap>
+
+    <sql id = "columns_name_sql">
+        t_method_id,t_thread_name,t_start_time,t_end_time,t_class_name,t_modifier,t_method_name,t_args_id,t_result_id,t_track_id,t_user_agent,t_server_host,t_url,t_method_type,t_client_host
+    </sql>
+    <sql id = "columns_value_sql">
+        #{methodId},#{threadName},#{startTime},#{endTime},#{className},#{modifier},#{methodName},#{argId},#{resultId},#{trackId},#{userAgent},#{serverHost},#{url},#{methodType},#{clientHost}
+    </sql>
+
+    <insert id="insert" parameterType="MethodRecord">
+        insert into t_method_record (<include refid="columns_name_sql"/>)
+        values (<include refid="columns_value_sql"/>)
+    </insert>
+
+    <select id="find" parameterType="MethodRecordVo" resultMap="collectionResultMap">
+        SELECT
+            m.*, arg.id AS arg_id,
+            arg.t_obj_id AS arg_obj_id,
+            arg.t_obj_val AS arg_obj_val,
+            arg.t_obj_type AS arg_obj_type,
+            arg.t_obj_idx AS arg_obj_idx,
+            rst.id AS rst_id,
+            rst.t_obj_id AS rst_obj_id,
+            rst.t_obj_type AS rst_obj_type,
+            rst.t_obj_idx AS rst_obj_idx
+        FROM
+        (
+            SELECT
+            *
+            FROM
+            t_method_record
+            <where>
+                <choose>
+                    <when test="method != null and method.methodId != null and method.methodId != ''">
+                        t_method_id = #{method.methodId}
+                    </when>
+                    <when test="method != null and method.methodName != '' and method.methodName != null">
+                        and t_method_name = #{method.methodName}
+                    </when>
+                    <when test="method != null and method.className != '' and method.className != null">
+                        and t_class_name = #{method.className}
+                    </when>
+                    <when test="method != null and method.trackId != '' and method.trackId != null">
+                        and t_track_id = #{method.trackId}
+                    </when>
+                    <when test="method != null and method.serverHost != '' and method.serverHost != null">
+                        and t_server_host = #{method.serverHost}
+                    </when>
+                    <when test="method != null and method.methodType != '' and method.methodType != null">
+                        and t_method_type = #{method.methodType}
+                    </when>
+                </choose>
+            </where>
+            ORDER BY
+            t_start_time DESC
+            <choose>
+                <when test="pageArgs != null and pageArgs.pageSize != '' and pageArgs.pageNo != null">
+                    LIMIT #{pageArgs.start}, #{pageArgs.pageSize}
+                </when>
+                <otherwise>
+                    LIMIT 10
+                </otherwise>
+            </choose>
+        ) m
+        INNER JOIN t_params arg ON m.t_args_id = arg.t_obj_id
+        INNER JOIN t_params rst ON m.t_result_id = rst.t_obj_id
+        <choose>
+            <when test="pageArgs != null and pageArgs.pageNo != null">
+                LIMIT #{pageArgs.pageSize}
+            </when>
+            <otherwise>
+                LIMIT 10
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.sc.portal.web.mapper.ParamterMapper">
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true"/>
+
+    <resultMap id="baseResultMap" type="Paramter">
+        <id column="id" property="id" />
+        <result column="t_obj_id" property="objId" />
+        <result column="t_obj_val" property="objValue" />
+        <result column="t_obj_type" property="objType" />
+        <result column="t_obj_idx" property="objIdx" />
+    </resultMap>
+
+    <sql id = "columns_name_sql">
+        id, t_obj_id, t_obj_val, t_obj_type, t_obj_idx
+    </sql>
+    <sql id = "columns_value_sql">
+        #{id}, #{objId}, #{objValue}, #{objType}, #{objIdx}
+    </sql>
+
+    <sql id = "columns_item_value_sql">
+        #{item.id}, #{item.objId}, #{item.objValue}, #{item.objType}, #{item.objIdx}
+    </sql>
+
+    <select id="find" parameterType="Paramter" resultMap="baseResultMap">
+        select
+        <include refid="columns_name_sql"/>
+        from
+        t_params
+        <where>
+            <choose>
+                <when test="id != null and id != ''">
+                    id = #{id}
+                </when>
+                <when test="objId != null and objId != ''">
+                    and t_obj_id = #{objId}
+                </when>
+                <when test="objValue != null and objValue != ''">
+                    and t_obj_val like "%"#{objValue}"%"
+                </when>
+                <when test="objIdx != null and objIdx != ''">
+                    and t_obj_idx = #{objIdx}
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <select id="findByObjId" parameterType="java.lang.String" resultMap="baseResultMap">
+        select
+        <include refid="columns_name_sql"/>
+        from
+        t_params where 1 = 1
+        <!-- 单个参数的处理方式:1、使用_parameter代替参数。2、使用@Param制定参数名称进行传递-->
+        <if test="_parameter!= null and _parameter!= ''">
+            and t_obj_id = #{_parameter}
+        </if>
+    </select>
+
+    <insert id="insert" parameterType="Paramter">
+        insert into
+        t_params
+        (<include refid="columns_name_sql"/>)
+        values
+        (<include refid="columns_value_sql"/>)
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into
+        t_params (<include refid="columns_name_sql"/>)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (<include refid="columns_item_value_sql"/>)
+        </foreach>
+    </insert>
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 无论查询返回值是否null，值都会被返回-->
+        <setting name="callSettersOnNulls" value="true"/>
+    </settings>
+    <typeAliases>
+        <package name="com.wit.sc.common.domain.bo"/>
+        <package name="com.wit.sc.common.domain.entity"/>
+        <package name="com.wit.sc.common.domain.vo"/>
+    </typeAliases>
+    <mappers>
+    </mappers>
+</configuration>

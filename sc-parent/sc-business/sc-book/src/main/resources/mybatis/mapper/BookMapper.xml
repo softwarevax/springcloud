@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.sc.book.web.dao.BookDao">
+    
+    <resultMap id="sc_book" type="Book">
+        <id column="book_id" property="bookId"/>
+        <result column="book_name" property="bookName"/>
+        <result column="author" property="author"/>
+        <result column="inventory" property="inventory"/>
+        <result column="introduce" property="introduce"/>
+        <result column="price" property="price"/>
+    </resultMap>
+
+    <!-- 查询所有的书 -->
+    <select id="getAll" resultMap="sc_book">
+        SELECT * FROM sc_book
+    </select>
+
+    <!-- 根据书的id查询书 -->
+    <select id="getBookById" resultMap="sc_book">
+        select * from sc_book where book_id = #{bookId}
+    </select>
+</mapper>

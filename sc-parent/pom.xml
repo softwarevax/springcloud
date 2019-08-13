@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.4.RELEASE</version>
+	</parent>
+
+	<groupId>com.wit.sc</groupId>
+	<artifactId>sc-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>sc-parent</name>
+	<packaging>pom</packaging>
+	<description>Demo project for Spring Boot</description>
+
+	<modules>
+		<module>sc-server</module>
+		<module>sc-business</module>
+		<module>sc-starter</module>
+	</modules>
+
+	<properties>
+		<cloud.version>Greenwich.RELEASE</cloud.version>
+		<java.version>1.8</java.version>
+		<server.monitor.version>2.1.4</server.monitor.version>
+		<fastjson.version>1.2.54</fastjson.version>
+		<beanutils.version>1.9.3</beanutils.version>
+		<feign.version>1.4.0.RELEASE</feign.version>
+		<zipkin.version>2.12.2</zipkin.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<!--maven执行install、package命令直接跳过测试-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- 可以在application.properties、bootstrap.properties中使用${}取出pom中的值，如${project.name} -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>utf-8</encoding>
+					<useDefaultDelimiters>true</useDefaultDelimiters>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
