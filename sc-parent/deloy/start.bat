@@ -13,4 +13,4 @@ start cmd /c java -jar oauth2-server.jar
 start cmd /c start-redis.bat
 
 ::启动elk
-start cmd /c start-elk.bat
+::start cmd /c start-elk.bat

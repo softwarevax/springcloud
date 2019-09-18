@@ -10,7 +10,7 @@ INSERT INTO `oauth_client_details` VALUES ('sc-zuul', null, '{bcrypt}$2a$10$Pw.P
 -- 密码明文为1111
 INSERT INTO `oauth2_user` VALUES ('1', 'admin', '{bcrypt}$2a$10$L0vDtlNJVkQRphlfsJHeXO.ALEMFp5RTiRqUGOGdOIoBVVJeBdpcC');
 
-INSERT INTO `properties` VALUES ('17', 'spring.datasource.url', 'jdbc:mysql://localhost:3306/sc', 'sc-portal,sc-zuul,sc-book', 'dev', 'schema', '数据源url');
+INSERT INTO `properties` VALUES ('17', 'spring.datasource.url', 'jdbc:mysql://localhost:3306/sc?serverTimezone=UTC', 'sc-portal,sc-zuul,sc-book', 'dev', 'schema', '数据源url');
 INSERT INTO `properties` VALUES ('18', 'spring.datasource.username', 'root', 'sc-portal,sc-zuul,sc-book', 'dev', 'schema', '数据源用户');
 INSERT INTO `properties` VALUES ('19', 'spring.datasource.password', '123456', 'sc-portal,sc-zuul,sc-book', 'dev', 'schema', '数据源密码');
 INSERT INTO `properties` VALUES ('20', 'spring.datasource.driver-class-name', 'com.mysql.jdbc.Driver', 'sc-portal,sc-zuul,sc-book', 'dev', 'schema', '数据源驱动');
