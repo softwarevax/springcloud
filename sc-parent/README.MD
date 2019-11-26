@@ -98,7 +98,11 @@ echo 3 > /proc/sys/vm/drop_caches
             response.getWriter().write(new ObjectMapper().writeValueAsString("token失败"));
         });
     }
-15、自定义授权处理(server,https://www.jianshu.com/p/19059060036b)
+15、自定义授权处理ResourceServerConfigurerAdapter配置(资源服务器,https://www.jianshu.com/p/19059060036b)
+    //表单登录 方式
+     http.formLogin().loginPage("/authentication/require")
+     //登录需要经过的url请求
+     .loginProcessingUrl("/authentication/form").successHandler(SavedRequestAwareAuthenticationSuccessHandler).failureHandler(SimpleUrlAuthenticationFailureHandler);
 继承SimpleUrlAuthenticationFailureHandler可自定义登录失败后的处理，继承SavedRequestAwareAuthenticationSuccessHandler可自定义登录成功后的处理
 ``` 
 

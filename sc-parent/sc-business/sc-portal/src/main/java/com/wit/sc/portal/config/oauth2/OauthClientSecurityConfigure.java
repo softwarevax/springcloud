@@ -30,6 +30,7 @@ public class OauthClientSecurityConfigure extends ResourceServerConfigurerAdapte
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                //决定哪些请求需要认证，这里设置为所有请求
                 .antMatcher("/**")
                 .authorizeRequests()
                 //不拦截路径表达式
