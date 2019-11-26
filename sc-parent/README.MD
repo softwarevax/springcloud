@@ -98,7 +98,8 @@ echo 3 > /proc/sys/vm/drop_caches
             response.getWriter().write(new ObjectMapper().writeValueAsString("token失败"));
         });
     }
-15、继承SimpleUrlAuthenticationFailureHandler可自定义登录失败后的处理，继承SavedRequestAwareAuthenticationSuccessHandler可自定义登录成功后的处理
+15、自定义授权处理(server,https://www.jianshu.com/p/19059060036b)
+继承SimpleUrlAuthenticationFailureHandler可自定义登录失败后的处理，继承SavedRequestAwareAuthenticationSuccessHandler可自定义登录成功后的处理
 ``` 
 
 ###模块support-spring-boot-starter说明
