@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * @author twcao
- * @description 登录失败处理器
+ * @description 登录失败处理器，页面的跳转需要自处理
  * @project sc-parent
  * @classname AuthenticationFailedHandler
  * @date 2019/11/27 16:59
