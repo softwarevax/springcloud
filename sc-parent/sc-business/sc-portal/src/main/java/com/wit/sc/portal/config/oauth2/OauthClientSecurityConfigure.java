@@ -1,5 +1,6 @@
 package com.wit.sc.portal.config.oauth2;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,8 +29,19 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @EnableResourceServer
 public class OauthClientSecurityConfigure extends ResourceServerConfigurerAdapter {
 
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        super.configure(resources);
+    @Autowired
+    AuthExceptionEntryPoint authExceptionEntryPoint;
+
+    @Autowired
+    CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    /**
+     * 自定义求授权的异常处理
+     * @param resources
+     */
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.authenticationEntryPoint(authExceptionEntryPoint).accessDeniedHandler(customAccessDeniedHandler);
     }
 
     /**
