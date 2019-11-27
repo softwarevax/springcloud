@@ -1,5 +1,6 @@
 package com.wit.sc.oauth.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -23,12 +24,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    AuthenticationSuccessHandler authenticationSuccessHandler;
+
+    @Autowired
+    AuthenticationFailedHandler authenticationFailedHandler;
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     /**
+     * //.successHandler(authenticationSuccessHandler)
+     * //.failureHandler(authenticationFailedHandler)
      * @param http
      * @throws Exception
      */
