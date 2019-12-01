@@ -35,6 +35,16 @@ eureka.instance.lease-renewal-interval-in-seconds=1
     <artifactId>logstash-logback-encoder</artifactId>
     <version>5.1</version>
 </dependency>
+<dependency>
+    <groupId>commons-dbcp</groupId>
+    <artifactId>commons-dbcp</artifactId>
+    <version>1.4</version>
+</dependency>
+<dependency>
+    <groupId>commons-pool</groupId>
+    <artifactId>commons-pool</artifactId>
+    <version>1.6</version>
+</dependency>
 ```
 ###### 1.2.2 修改日志文件路径
 > logging.config = classpath:logback-spring.xml  ===> logging.config = classpath:elk-logback-spring.xml
