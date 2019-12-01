@@ -17,6 +17,8 @@ public class UserDetail {
     @Id
     private String userId;
 
+    private String loginName;
+
     private String userName;
 
     private String nickName;
@@ -73,5 +75,13 @@ public class UserDetail {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 }

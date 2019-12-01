@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDetailDao extends JpaRepository<UserDetail, String> {
 
-    UserDetail getUserInfoByUserId(String userId);
+    UserDetail getUserInfoByLoginName(String loginName);
 }

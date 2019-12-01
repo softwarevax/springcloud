@@ -18,7 +18,7 @@ public class UserDetailService {
     @Autowired
     UserDetailDao userDetailDao;
 
-    public UserDetail getUserInfo(String userId) {
-        return userDetailDao.getUserInfoByUserId(userId);
+    public UserDetail getUserInfo(String loginName) {
+        return userDetailDao.getUserInfoByLoginName(loginName);
     }
 }
