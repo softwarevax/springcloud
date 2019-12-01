@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**")
+        http.requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**", "/static/**")
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
@@ -63,6 +63,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         //解决静态资源被拦截的问题
-        web.ignoring().antMatchers("/static/**","/favicon.ico","/user/registered", "/user/update");
+        web.ignoring().antMatchers("/static/**","/favicon.ico","/api/user/register", "/api//user/update");
     }
 }

@@ -21,7 +21,7 @@ import java.io.Serializable;
  * @date 2019/8/3 15:02
  */
 @Service
-public class Oauth2UserDetailsService implements UserDetailsService,Serializable {
+public class Oauth2UserDetailsService implements UserDetailsService, Serializable {
 
     /**
      * 日志

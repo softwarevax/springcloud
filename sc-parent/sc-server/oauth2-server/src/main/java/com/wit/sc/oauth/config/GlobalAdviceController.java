@@ -1,6 +1,6 @@
 package com.wit.sc.oauth.config;
 
-import com.wit.sc.support.web.domain.ResultDto;
+import com.wit.sc.oauth.web.entity.ResultDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
