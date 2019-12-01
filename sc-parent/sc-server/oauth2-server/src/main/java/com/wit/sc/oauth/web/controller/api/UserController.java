@@ -55,6 +55,7 @@ public class UserController {
 
     /**
      * 根据用户id查询用户详情
+     * 需要登录后才可以请求到结果
      * @param userId
      * @return
      */
@@ -69,7 +70,7 @@ public class UserController {
      * @param password
      * @return 返回用户id
      */
-    @GetMapping("/api/user/registered")
+    @GetMapping("/api/user/register")
     public ResultDto<Integer> registered(String username, String password) {
         logger.info("registered username = [{}], password = [{}]", username, password);
         if(StringUtils.isAnyBlank(username, password)) {

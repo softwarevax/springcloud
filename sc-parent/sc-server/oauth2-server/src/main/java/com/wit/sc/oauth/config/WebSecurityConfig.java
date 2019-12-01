@@ -63,6 +63,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         //解决静态资源被拦截的问题
-        web.ignoring().antMatchers("/static/**","/favicon.ico","/api/user/register", "/api//user/update");
+        web.ignoring().antMatchers("/static/**","/favicon.ico","/api/user/register");
     }
 }
