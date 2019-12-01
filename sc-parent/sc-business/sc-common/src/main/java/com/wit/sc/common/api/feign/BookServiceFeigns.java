@@ -22,7 +22,7 @@ public interface BookServiceFeigns {
      * 获取所有的书
      * @return
      */
-    @GetMapping("getAllBooks")
+    @GetMapping("/api/book/getAllBooks")
     String getAllBooks();
 
     /**
@@ -30,6 +30,9 @@ public interface BookServiceFeigns {
      * 其中bookId不能为空
      * @return
      */
-    @PostMapping("getBookById")
+    @PostMapping("/api/book/getBookById")
     ResultDto<Book> getBookById(@RequestParam("bookId") String bookId);
+
+    @PostMapping("/api/book/buyBooks")
+    String buyBooks(@RequestParam("bookId") String bookId, @RequestParam("bookNum") Integer bookNum);
 }

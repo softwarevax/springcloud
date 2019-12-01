@@ -28,4 +28,9 @@ public class Constant {
     public static int MAX_PAGE_SIZE = 50;
 
     public static String PAGE_SIZE_PARAM = "pageSize";
+
+    /**
+     * 登录系统，获取用户详情接口
+     */
+    public static final String USER_INFO_URL = "http://localhost:9030/auth/api/user";
 }

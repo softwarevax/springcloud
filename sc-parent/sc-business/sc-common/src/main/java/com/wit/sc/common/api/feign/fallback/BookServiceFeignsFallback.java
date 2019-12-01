@@ -42,6 +42,11 @@ public class BookServiceFeignsFallback implements FallbackFactory<BookServiceFei
                 book.setBookId("-1");
                 return ResultDto.failT(book);
             }
+
+            @Override
+            public String buyBooks(String bookId, Integer num) {
+                return ResultDto.fail("");
+            }
         };
     }
 }

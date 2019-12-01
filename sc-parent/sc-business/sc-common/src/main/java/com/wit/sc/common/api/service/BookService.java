@@ -26,4 +26,13 @@ public interface BookService {
      * @return 如果结果不符合要求，则返回空实体
      */
     Book getBookById(String bookId);
+
+    /**
+     * 购买书籍
+     * @param loginName 购买人
+     * @param bookId 书籍id
+     * @param num 购买数量
+     * @return
+     */
+    String buyBooks(String loginName, String bookId, int num);
 }

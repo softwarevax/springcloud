@@ -1,11 +1,13 @@
 package com.wit.sc.common.utils;
 
 import feign.RequestTemplate;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -43,6 +45,26 @@ public class CommonUtils {
                     requestTemplate.header(name, value);
                 }
             }
+        }
+    }
+
+    /**
+     * map转对象
+     * @param map
+     * @param beanClass
+     * @return
+     * @throws Exception
+     */
+    public static <T> T mapToObject(Map<String, Object> map, Class<T> beanClass) {
+        try {
+            if (map == null) {
+                return null;
+            }
+            T obj = beanClass.newInstance();
+            BeanUtils.populate(obj, map);
+            return obj;
+        } catch (Exception e) {
+            return null;
         }
     }
 }
