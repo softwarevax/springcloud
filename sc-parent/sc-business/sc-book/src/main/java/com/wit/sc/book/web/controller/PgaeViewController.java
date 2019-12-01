@@ -1,4 +1,4 @@
-package com.wit.sc.portal.web.controller.page;
+package com.wit.sc.book.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PgaeViewController {
 
-    /**
-     * 未授权页面
-     * @return
-     */
-    @RequestMapping(value = "/401")
-    public String unAuthorized() {
-        return "/erroes/401";
+    @RequestMapping(value = "/home")
+    public String home() {
+        return "home";
     }
 }

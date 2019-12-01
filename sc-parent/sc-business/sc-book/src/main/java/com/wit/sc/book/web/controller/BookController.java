@@ -1,14 +1,18 @@
 package com.wit.sc.book.web.controller;
 
+import com.wit.sc.book.config.oauth.UserAuthenticationManage;
 import com.wit.sc.common.api.service.BookService;
 import com.wit.sc.common.domain.dto.ResultDto;
 import com.wit.sc.common.domain.entity.book.Book;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -21,6 +25,10 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class BookController {
 
+    public static final String ACTION_KEY = "/api/book";
+
+    public final Logger logger = LoggerFactory.getLogger(BookController.class);
+
     @Autowired
     BookService bookService;
 
@@ -28,7 +36,7 @@ public class BookController {
      * 获取所有的书
      * @return
      */
-    @GetMapping("getAllBooks")
+    @GetMapping(ACTION_KEY + "/getAllBooks")
     public String getAllBooks(HttpSession session) {
         String bookSessionId = session.getId();
         String portalSerssionId = (String) session.getAttribute("sessionId");
@@ -42,8 +50,22 @@ public class BookController {
      * @param bookId 书的id
      * @return 如果结果不符合要求，则返回空实体
      */
-    @PostMapping("getBookById")
+    @PostMapping(ACTION_KEY + "/getBookById")
     public ResultDto<Book> getBookById(@RequestParam String bookId) {
         return ResultDto.successT(bookService.getBookById(bookId));
+    }
+
+    @Autowired
+    UserAuthenticationManage authenticationManage;
+
+    /**
+     * 买书
+     * @param bookId
+     * @param bookNum
+     * @return
+     */
+    @PostMapping(ACTION_KEY + "/buyBooks")
+    public String buyBooks(@RequestParam("bookId") String bookId, @RequestParam("bookNum") Integer bookNum, HttpServletRequest request) {
+        return bookService.buyBooks(null, bookId, bookNum);
     }
 }

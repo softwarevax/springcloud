@@ -1,11 +1,13 @@
 package com.wit.sc.book.config.oauth;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
 /**
  * @author ctw
@@ -28,10 +30,25 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class OauthClientSecurityConfigure extends ResourceServerConfigurerAdapter {
 
+    @Autowired
+    AuthExceptionEntryPoint authExceptionEntryPoint;
+
+    @Autowired
+    CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    /**
+     * 自定义求授权的异常处理
+     * @param resources
+     */
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.authenticationEntryPoint(authExceptionEntryPoint).accessDeniedHandler(customAccessDeniedHandler);
+    }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .antMatcher("/**")
+                .antMatcher("/api/**")
                 .authorizeRequests()
                 .antMatchers( "/login**")
                 .permitAll()

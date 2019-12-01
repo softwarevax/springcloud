@@ -20,4 +20,5 @@
     <select id="getBookById" resultMap="sc_book">
         select * from sc_book where book_id = #{bookId}
     </select>
+
 </mapper>
