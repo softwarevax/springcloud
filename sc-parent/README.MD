@@ -104,6 +104,14 @@ echo 3 > /proc/sys/vm/drop_caches
      //登录需要经过的url请求
      .loginProcessingUrl("/authentication/form").successHandler(SavedRequestAwareAuthenticationSuccessHandler).failureHandler(SimpleUrlAuthenticationFailureHandler);
 继承SimpleUrlAuthenticationFailureHandler可自定义登录失败后的处理，继承SavedRequestAwareAuthenticationSuccessHandler可自定义登录成功后的处理
+
+16、服务间调用
+16.1 所有接口设置路径前缀/api，用以区分页面和接口
+16.2 请求接口未授权时，返回状态码为403的json数据
+16.3 请求页面未授权时，重定向到登录页
+16.4 微服务之间是接口的调用，普通用户请求的是页面，微服务之间的接口调用需要授权
+17、全局异常捕获，无法捕获feign接口异常
+
 ``` 
 
 ###模块support-spring-boot-starter说明
