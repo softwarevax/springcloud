@@ -1,6 +1,6 @@
 package com.wit.sc.portal.config;
 
-import com.wit.sc.support.web.domain.ResultDto;
+import com.wit.sc.common.domain.dto.ResultDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

@@ -26,23 +26,23 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @EnableOAuth2Sso
 @Configuration
 @EnableOAuth2Client
-@EnableResourceServer
+//@EnableResourceServer
 public class OauthClientSecurityConfigure extends ResourceServerConfigurerAdapter {
 
-    @Autowired
+   /* @Autowired
     AuthExceptionEntryPoint authExceptionEntryPoint;
 
     @Autowired
-    CustomAccessDeniedHandler customAccessDeniedHandler;
+    CustomAccessDeniedHandler customAccessDeniedHandler;*/
 
     /**
      * 自定义求授权的异常处理
      * @param resources
      */
-    @Override
+   /* @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.authenticationEntryPoint(authExceptionEntryPoint).accessDeniedHandler(customAccessDeniedHandler);
-    }
+    }*/
 
     /**
      * 用于配置对受保护的资源的访问规则
