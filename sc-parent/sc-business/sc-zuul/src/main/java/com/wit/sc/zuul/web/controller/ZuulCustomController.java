@@ -1,10 +1,7 @@
 package com.wit.sc.zuul.web.controller;
 
-import com.wit.sc.common.api.feign.UserServiceFeigns;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * @author ctw
@@ -16,16 +13,8 @@ import javax.annotation.Resource;
 @RestController
 public class ZuulCustomController {
 
-    @Resource
-    UserServiceFeigns userServiceFeigns;
-
     @GetMapping("hello")
     public String hello() {
         return "您好,maple";
-    }
-
-    @GetMapping("getAllBooks")
-    public String getAllBooks() {
-        return userServiceFeigns.getAllBooks();
     }
 }
