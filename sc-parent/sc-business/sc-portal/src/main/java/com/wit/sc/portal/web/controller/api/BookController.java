@@ -1,6 +1,8 @@
 package com.wit.sc.portal.web.controller.api;
 
 import com.wit.sc.common.api.feign.BookServiceFeigns;
+import com.wit.sc.common.domain.dto.ResultDto;
+import com.wit.sc.common.domain.entity.book.Book;
 import com.wit.sc.portal.config.oauth2.UserAuthenticationManage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,5 +36,11 @@ public class BookController {
     @GetMapping(ACTION_KEY + "/buy")
     public String buyBook(HttpServletRequest request, String bookId, int num) {
         return bookServiceFeigns.buyBooks(bookId, num);
+    }
+
+    @GetMapping(ACTION_KEY + "/getBookById")
+    public ResultDto<Book> getBookById(String bookId) {
+        ResultDto<Book> dto = bookServiceFeigns.getBookById(bookId);
+        return dto;
     }
 }
