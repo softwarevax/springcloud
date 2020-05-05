@@ -7,6 +7,7 @@
 	<artifactId>springcloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springcloud</name>
+	<packaging>pom</packaging>
 
 	<modules>
 		<module>sc-parent</module>

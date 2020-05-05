@@ -1,13 +1,11 @@
 package com.wit.sc.book.web.service;
 
-import com.wit.sc.book.config.oauth.UserAuthenticationManage;
 import com.wit.sc.book.web.dao.BookDao;
 import com.wit.sc.common.api.service.BookService;
 import com.wit.sc.common.domain.dto.ResultDto;
 import com.wit.sc.common.domain.entity.book.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -31,9 +29,6 @@ public class BookServiceImpl implements BookService {
 
     @Resource
     BookDao bookDao;
-
-    @Autowired
-    UserAuthenticationManage authenticationManage;
 
     /**
      * 获取所有的书

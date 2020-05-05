@@ -22,7 +22,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
  * ResourceServerConfigurerAdapter(order=3) 和 WebSecurityConfigurerAdapter(order=100)
  *故相同的设置，前者的生效
  *
- * 去掉@EnableResourceServer注解，未授权页面会被重定向到登陆页
+ * 去掉@EnableResourceServer注解：未授权接口会被重定向到登陆页, 无法使用共享的session
+ * 添加@EnableResourceServer注解：访问为未授权的资源(静态资源), 会重定向到登陆页, 未授权接口提示没有访问权限
  */
 @EnableOAuth2Sso
 @Configuration

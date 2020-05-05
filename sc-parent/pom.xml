@@ -17,6 +17,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<modules>
+		<module>dependencies-bom</module>
 		<module>sc-server</module>
 		<module>sc-business</module>
 		<module>sc-starter</module>
@@ -25,15 +26,17 @@
 	<properties>
 		<cloud.version>Greenwich.RELEASE</cloud.version>
 		<java.version>1.8</java.version>
-		<server.monitor.version>2.1.4</server.monitor.version>
-		<fastjson.version>1.2.54</fastjson.version>
-		<beanutils.version>1.9.3</beanutils.version>
-		<feign.version>1.4.0.RELEASE</feign.version>
-		<zipkin.version>2.12.2</zipkin.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.wit.sc</groupId>
+				<artifactId>dependencies-bom</artifactId>
+				<version>1.0.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>

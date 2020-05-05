@@ -1,6 +1,5 @@
 package com.wit.sc.book.web.controller;
 
-import com.wit.sc.book.config.oauth.UserAuthenticationManage;
 import com.wit.sc.common.api.service.BookService;
 import com.wit.sc.common.domain.dto.ResultDto;
 import com.wit.sc.common.domain.entity.book.Book;
@@ -54,9 +53,6 @@ public class BookController {
     public ResultDto<Book> getBookById(@RequestParam String bookId) {
         return ResultDto.successT(bookService.getBookById(bookId));
     }
-
-    @Autowired
-    UserAuthenticationManage authenticationManage;
 
     /**
      * 买书

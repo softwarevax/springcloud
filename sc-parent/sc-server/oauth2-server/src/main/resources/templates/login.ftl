@@ -18,21 +18,21 @@
 </head>
 
 <body>
-<div class="login-box" id="app" >
-    <el-form action="/auth/login" method="post" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-        <h2 class="title" >统一认证登录平台</h2>
-        <el-form-item>
-            <el-input type="text"  name="username" v-model="username" auto-complete="off" placeholder="账号"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-input type="password" name="password" v-model="password" auto-complete="off" placeholder="密码"></el-input>
-        </el-form-item>
-        <el-form-item style="width:100%; text-align:center;">
-            <el-button type="primary" style="width:47%;" @click.native.prevent="reset">重 置</el-button>
-            <el-button type="primary" style="width:47%;" native-type="submit" :loading="loading">登 录</el-button>
-        </el-form-item>
+    <div class="login-box" id="app" >
+        <el-form action="/auth/login" method="post" label-position="left" label-width="0px" class="demo-ruleForm login-container">
+            <h2 class="title" >统一认证登录平台</h2>
+            <el-form-item>
+                <el-input type="text"  name="username" v-model="username" auto-complete="off" placeholder="账号"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-input type="password" name="password" v-model="password" auto-complete="off" placeholder="密码"></el-input>
+            </el-form-item>
+            <el-form-item style="width:100%; text-align:center;">
+                <el-button type="primary" style="width:47%;" @click.native.prevent="reset">重 置</el-button>
+                <el-button type="primary" style="width:47%;" native-type="submit" :loading="loading">登 录</el-button>
+            </el-form-item>
         <el-form>
-</div>
+    </div>
 </body>
 
 <script type="text/javascript">
@@ -52,7 +52,7 @@
 <style lang="scss" scoped>
 
     body{
-        background: url(./static/images/login_bg.png)  no-repeat center center;
+        background: url(./static/images/login_bg.jpg)  no-repeat center center;
         background-size:cover;
         background-attachment:fixed;
         background-color:#CCCCCC;
